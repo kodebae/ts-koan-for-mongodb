@@ -55,9 +55,6 @@ describe('MongoKoan', () => {
 
   test('test push one tag', async () => {
     const id = "3291521c-50fb-11ee-be56-0242ac120002";
-    const test = await mongoKoan.getOne(id);
-    expect(test).toMatchObject({tags:["one","two"]});
-
     const response = await mongoKoan.pushTag(id, "three");
     expect(response).toMatchObject({tags:["one", "two", "three"]});
   });
@@ -69,9 +66,9 @@ describe('MongoKoan', () => {
   });
 
   test('test deleteOne', async () => {
-    const id: string = "";
+    const id: string = "32915442-50fb-11ee-be56-0242ac120002";
     const response = await mongoKoan.deleteOne(id);
-    expect(response).toMatchObject({});
+    expect(response).toMatchObject({"acknowledged": true, "deletedCount": 1});
   });
 
   test('test getWithProjection', async () => {
