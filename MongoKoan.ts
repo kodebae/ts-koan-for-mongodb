@@ -75,7 +75,9 @@ export class MongoKoan {
 
   public async setInStock(id: string, quantity: IntegerType): Promise<ProductWithId | {error: any}> {
     try {
-      return await this.collection.findOneAndUpdate({ "id": id },{"instock":quantity}) as ProductWithId;
+      const filter = { "id": id };
+      const update = {"instock":quantity};
+      return await this.collection.findOneAndUpdate(filter, update) as ProductWithId;
       // throw("To Be Implemented")
     } catch (error) {
       return {"error":error};
