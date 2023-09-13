@@ -138,7 +138,7 @@ export class MongoKoan {
 
   public async getWithProjection(minimumName: string, fields: Array<string>): Promise<Array<ProductWithId> | {error: any}> {
     try {
-      const selector = {name: {$gte:minimumName}};
+      const selector: { [key: string]: any } = {name: {$gte:minimumName}};
       const projection: { [key: string]: any } = {_id:0};
       fields.forEach((field) => {
         projection[field] = 1;
@@ -152,8 +152,8 @@ export class MongoKoan {
 
   public async elemMatch(id: string): Promise<UpdateResult<ProductWithId> | {error: any}> {
     try {
-      const filter = {"id":id};
-      const update = {$set:{"tags":"foo"}};
+      const filter: { [key: string]: any } = {"id":id};
+      const update: { [key: string]: any } = {$set:{"tags":"foo"}};
       return await this.collection.updateOne(filter, update) as UpdateResult<ProductWithId>;
       // throw("To Be Implemented")
     } catch (error) {

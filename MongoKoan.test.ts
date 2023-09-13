@@ -9,10 +9,10 @@ describe('MongoKoan', () => {
   beforeAll(async () => {
     mongoKoan = new MongoKoan();
     const connectResult = await mongoKoan.connect() as Array<IndexInformationOptions>;
-    expect(connectResult).toMatchObject({"foo":"bar"});
+    expect(connectResult).toMatchObject([{"key": {"_id": 1}, "name": "_id_", "v": 2}]);
 
     const loadAllResult = await mongoKoan.loadAll() as InsertManyResult<ProductWithId>;
-    expect(loadAllResult).toMatchObject({"foo":"bar"});
+    expect(loadAllResult).toMatchObject({"insertedCount": 36});
   });
 
   test('test countAll', async () => {
@@ -32,8 +32,13 @@ describe('MongoKoan', () => {
       "status": "draft",
     }; 
 
-    const newProduct = await mongoKoan.addOne(product) as InsertOneResult<ProductWithId>;
+    const insertResult = await mongoKoan.addOne(product) as InsertOneResult<ProductWithId>;
+    expect(insertResult).toHaveProperty("insertedId");
+
+    const newProduct = await mongoKoan.getOne(product.id) as ProductWithId;
     expect(newProduct).toMatchObject(product);
+    expect(newProduct._id).toEqual(insertResult.insertedId);
+
   });
 
   test('test setInStock', async () => {
@@ -67,8 +72,6 @@ describe('MongoKoan', () => {
   });
 
   test('test getWithProjection', async () => {
-    const filter = {"name"};
-    const projection = {"_id":0};
     const response = await mongoKoan.getWithProjection("W",["id","name"]) as Array<ProductWithId>;
     expect(response).toMatchObject({});
   });
