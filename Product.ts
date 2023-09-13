@@ -8,8 +8,8 @@ export interface ProductWithId extends Product, WithId<Product> {
 export interface Product extends Document {
     id: string,
     name: string,
-    description: string,
-    inventoryQuantity: IntegerType,
+    description?: string,
+    inventoryQuantity?: IntegerType,
     status: string,
     lastUpdated?: EventTrace,
     tags?: Array<String>,
