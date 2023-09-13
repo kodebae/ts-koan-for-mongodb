@@ -18,7 +18,7 @@ describe('MongoKoan', () => {
   test('test countAll', async () => {
     const response = await mongoKoan.countAll(); 
     expect(response).toEqual(36);
-  });
+  }); 
 
   test('get all documents', async () => {
     const response = await mongoKoan.getAll() as Array<ProductWithId>;
@@ -42,26 +42,29 @@ describe('MongoKoan', () => {
   });
 
   test('test setInStock', async () => {
-    const id: string = "";
+    const id: string = "329149de-50fb-11ee-be56-0242ac120002";
     const response = await mongoKoan.setInStock(id,20);
     expect(response).toMatchObject({"instock":20});
   });
 
   test('test add tags attribute', async () => {
-    const id = "329149de-50fb-11ee-be56-0242ac120002";
-    const response = await mongoKoan.addTags(id, ["one","two"]) as UpdateResult<ProductWithId>;
+    const id = "329150d2-50fb-11ee-be56-0242ac120002";
+    const response = await mongoKoan.addTags(id, ["one","two"]);
     expect(response).toMatchObject({tags:["one","two"]});
   });
 
   test('test push one tag', async () => {
-    const id = "329150d2-50fb-11ee-be56-0242ac120002";
-    const response = await mongoKoan.pushTag(id, "three") as UpdateResult<ProductWithId>;
+    const id = "3291521c-50fb-11ee-be56-0242ac120002";
+    const test = await mongoKoan.getOne(id);
+    expect(test).toMatchObject({tags:["one","two"]});
+
+    const response = await mongoKoan.pushTag(id, "three");
     expect(response).toMatchObject({tags:["one", "two", "three"]});
   });
 
   test('test push tags', async () => {
-    const id = "329150d2-50fb-11ee-be56-0242ac120002";
-    const response = await mongoKoan.pushTags(id, ["Yellow","Green"]) as UpdateResult<ProductWithId>;
+    const id = "3291533e-50fb-11ee-be56-0242ac120002";
+    const response = await mongoKoan.pushTags(id, ["Yellow","Green"]);
     expect(response).toMatchObject({tags:["Red", "Blue", "Yellow", "Green"]});
   });
 
@@ -131,7 +134,7 @@ describe('MongoKoan', () => {
   });
 
   afterAll(async () => {
-    await mongoKoan.deleteAll();
+    await mongoKoan.deleteAll(); 
     await mongoKoan.disconnect();
   });
 });

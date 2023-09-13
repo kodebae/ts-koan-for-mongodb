@@ -12,6 +12,7 @@ export interface Product extends Document {
     inventoryQuantity?: IntegerType,
     status: string,
     lastUpdated?: EventTrace,
+    instock?: IntegerType,
     tags?: Array<String>,
     many?: string
   }

@@ -1,6 +1,6 @@
 import { productsData } from "./products";
 import { Product, ProductWithId } from "./Product";
-import { MongoClient, Db, Collection, UpdateFilter, InsertManyResult, IntegerType, IndexInformationOptions, DeleteResult, InsertOneResult, UpdateResult, ModifyResult } from "mongodb";
+import { MongoClient, Db, Collection, FindOneAndUpdateOptions, UpdateFilter, InsertManyResult, IntegerType, IndexInformationOptions, DeleteResult, InsertOneResult, UpdateResult, ModifyResult, ReturnDocument } from "mongodb";
 
 export class MongoKoan {
   private dbName: string = "StageZero";
@@ -76,9 +76,10 @@ export class MongoKoan {
   public async setInStock(id: string, quantity: IntegerType): Promise<ProductWithId | {error: any}> {
     try {
       const filter = { "id": id };
-      const update = {"instock":quantity};
-      return await this.collection.findOneAndUpdate(filter, update) as ProductWithId;
-      // throw("To Be Implemented")
+      const update = { $set: {"instock":quantity} };
+      const option = { returnDocument: ReturnDocument.AFTER };
+
+      return await this.collection.findOneAndUpdate(filter, update, option) as ProductWithId;
     } catch (error) {
       return {"error":error};
     } 
@@ -88,40 +89,47 @@ export class MongoKoan {
     try {
       const selector = { "id": id };
       const updater = {$inc:{inventoryQuantity:-quantity}};
-      return await this.collection.findOneAndUpdate(selector,updater) as ProductWithId;
+      const option = { returnDocument: ReturnDocument.AFTER };
+
+      return await this.collection.findOneAndUpdate(selector,updater, option) as ProductWithId;
       // throw("To Be Implemented")
     } catch (error) {
       return {"error":error};
     }
   }
 
-  public async addTags(id: string, tags: Array<string>): Promise<UpdateResult | {error: any}> {
+  public async addTags(id: string, tags: Array<string>): Promise<ProductWithId | {error: any}> {
     try {
       const filter = {"id":id};
       const update = {$set:{"tags":tags}};
-      return await this.collection.updateOne(filter, update) as UpdateResult;
+      const option = { returnDocument: ReturnDocument.AFTER };
+
+      return await this.collection.findOneAndUpdate(filter, update, option) as ProductWithId;
       // throw("To Be Implemented")
     } catch (error) {
       return {"error":error};
     }
   }
 
-  public async pushTag(id: string, tag: string): Promise<UpdateResult<ProductWithId> | {error: any}> {
+  public async pushTag(id: string, tag: string): Promise<ProductWithId | {error: any}> {
     try {
       const filter = {"id":id};
-      const update = {$push:{tags:tag}};
-      return await this.collection.updateOne(filter, update) as UpdateResult<ProductWithId>;
-      // throw("To Be Implemented")
+      // const update: UpdateFilter<ProductWithId> = { $push: { tags: tag } };
+      const update = {$push:{"tags":tag}} as any;
+      const option = { returnDocument: ReturnDocument.AFTER };
+
+      return await this.collection.findOneAndUpdate(filter, update, option) as ProductWithId;
     } catch (error) {
       return {"error":error};
     }
   }
 
-  public async pushTags(id: string, tags: Array<string>): Promise<UpdateResult<ProductWithId> | {error: any}> {
+  public async pushTags(id: string, tags: Array<string>): Promise<ProductWithId | {error: any}> {
     try {
       const filter = {"id":id};
-      const update = {$push:{tags:tags}};
-      return await this.collection.updateOne(filter, update) as UpdateResult<ProductWithId>;
+      const update = {$push:{tags: {$each:tags}}} as any;
+      const option = { returnDocument: ReturnDocument.AFTER };
+      return await this.collection.findOneAndUpdate(filter, update, option) as ProductWithId;
       // throw("To Be Implemented")
     } catch (error) {
       return {"error":error};
@@ -240,7 +248,7 @@ export class MongoKoan {
   public async deleteAll() {
     try {
       return await this.collection.deleteMany({});
-      // throw("To Be Implemented")
+      // throw("To Be Implemented"); 
     } catch (error) {
       return {"error":error};
     }

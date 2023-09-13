@@ -12,7 +12,7 @@ export const productsData = [
     }
   },
   {
-    "id:": "329150d2-50fb-11ee-be56-0242ac120002",
+    "id": "329150d2-50fb-11ee-be56-0242ac120002",
     "name": "SmartView 4K TV",
     "description": "A 50-inch 4K Ultra HD Smart TV with HDR.",
     "inventoryQuantity": 5,
@@ -22,26 +22,27 @@ export const productsData = [
       "from": "192.168.1.2",
       "by": "c9d0e2f8-b1c3-415c-a1e7-d6281e26c3a2"
     },
-    "tags":[],
   },
   {
-    "id:": "3291521c-50fb-11ee-be56-0242ac120002",
+    "id": "3291521c-50fb-11ee-be56-0242ac120002",
     "name": "SwiftCharge Power Bank",
     "description": "Portable 10,000mAh power bank with fast charging.",
     "inventoryQuantity": 45,
     "status": "deleted",
+    "tags":["one","two"],
     "lastUpdated": {
       "at": "2023-09-08T13:45:30Z",
       "from": "192.168.1.3",
       "by": "fe862a7e-cf80-4f2d-8d25-0d5e6c1d0f33"
-    }
+    },
   },
   {
-    "id:": "3291533e-50fb-11ee-be56-0242ac120002",
+    "id": "3291533e-50fb-11ee-be56-0242ac120002",
     "name": "EcoClean Water Filter",
     "description": "Reusable water filter with eco-friendly design.",
     "inventoryQuantity": 31,
     "status": "active",
+    "tags":["Red","Blue"],
     "lastUpdated": {
       "at": "2023-09-08T16:12:40Z",
       "from": "192.168.1.4",
@@ -49,7 +50,7 @@ export const productsData = [
     }
   },
   {
-    "id:": "32915442-50fb-11ee-be56-0242ac120002",
+    "id": "32915442-50fb-11ee-be56-0242ac120002",
     "name": "ZenDesk Office Chair",
     "description": "Ergonomic office chair with adjustable height.",
     "inventoryQuantity": 9,
@@ -61,7 +62,7 @@ export const productsData = [
     }
   },
   {
-    "id:": "32915582-50fb-11ee-be56-0242ac120002",
+    "id": "32915582-50fb-11ee-be56-0242ac120002",
     "name": "SunRay Solar Charger",
     "description": "Portable solar-powered phone charger.",
     "inventoryQuantity": 52,
@@ -73,7 +74,7 @@ export const productsData = [
     }
   },
   {
-    "id:": "3291569a-50fb-11ee-be56-0242ac120002",
+    "id": "3291569a-50fb-11ee-be56-0242ac120002",
     "name": "AirCool Fan",
     "description": "Bladeless oscillating fan with remote control.",
     "inventoryQuantity": 17,
@@ -85,7 +86,7 @@ export const productsData = [
     }
   },
   {
-    "id:": "329157b2-50fb-11ee-be56-0242ac120002",
+    "id": "329157b2-50fb-11ee-be56-0242ac120002",
     "name": "YogaMat Plus",
     "description": "Non-slip yoga mat with alignment markings.",
     "inventoryQuantity": 30,
@@ -97,7 +98,7 @@ export const productsData = [
     }
   },
   {
-    "id:": "32915c30-50fb-11ee-be56-0242ac120002",
+    "id": "32915c30-50fb-11ee-be56-0242ac120002",
     "name": "KitchenAid Blender",
     "description": "High-speed blender with multiple settings.",
     "inventoryQuantity": 8,
@@ -109,7 +110,7 @@ export const productsData = [
     }
   },
   {
-    "id:": "32915d52-50fb-11ee-be56-0242ac120002",
+    "id": "32915d52-50fb-11ee-be56-0242ac120002",
     "name": "TravelPack Luggage",
     "description": "Lightweight, durable luggage with built-in locks.",
     "inventoryQuantity": 20,
@@ -121,7 +122,7 @@ export const productsData = [
     }
   },
   {
-    "id:": "32915e74-50fb-11ee-be56-0242ac120002",
+    "id": "32915e74-50fb-11ee-be56-0242ac120002",
     "name": "SmartCoffee Maker",
     "description": "Programmable coffee maker with smartphone app.",
     "inventoryQuantity": 14,
@@ -133,7 +134,7 @@ export const productsData = [
     }
   },
   {
-    "id:": "32915f78-50fb-11ee-be56-0242ac120002",
+    "id": "32915f78-50fb-11ee-be56-0242ac120002",
     "name": "CozyBlanket",
     "description": "Heated electric blanket with multiple settings.",
     "inventoryQuantity": 25,
@@ -145,7 +146,7 @@ export const productsData = [
     }
   },
   {
-    "id:": "32916090-50fb-11ee-be56-0242ac120002",
+    "id": "32916090-50fb-11ee-be56-0242ac120002",
     "name": "FitnessBand",
     "description": "Fitness tracker with heart rate monitor.",
     "inventoryQuantity": 19,
@@ -157,7 +158,7 @@ export const productsData = [
     }
   },
   {
-    "id:": "3291619e-50fb-11ee-be56-0242ac120002",
+    "id": "3291619e-50fb-11ee-be56-0242ac120002",
     "name": "SoundBar Pro",
     "description": "Wireless soundbar with built-in subwoofer.",
     "inventoryQuantity": 7,
@@ -169,7 +170,7 @@ export const productsData = [
     }
   },
   {
-    "id:": "329162a2-50fb-11ee-be56-0242ac120002",
+    "id": "329162a2-50fb-11ee-be56-0242ac120002",
     "name": "GreenTea Set",
     "description": "Organic green tea set with teapot and cups.",
     "inventoryQuantity": 22,
@@ -181,7 +182,7 @@ export const productsData = [
     }
   },
   {
-    "id:": "32916680-50fb-11ee-be56-0242ac120002",
+    "id": "32916680-50fb-11ee-be56-0242ac120002",
     "name": "CarVac Cleaner",
     "description": "Portable vacuum cleaner for car interiors.",
     "inventoryQuantity": 10,
@@ -193,7 +194,7 @@ export const productsData = [
     }
   },
   {
-    "id:": "32916798-50fb-11ee-be56-0242ac120002",
+    "id": "32916798-50fb-11ee-be56-0242ac120002",
     "name": "AquaPure Filter",
     "description": "High-capacity water filtration system.",
     "inventoryQuantity": 11,
@@ -205,7 +206,7 @@ export const productsData = [
     }
   },
   {
-    "id:": "329168a6-50fb-11ee-be56-0242ac120002",
+    "id": "329168a6-50fb-11ee-be56-0242ac120002",
     "name": "BeautySkin Lotion",
     "description": "Organic skin moisturizer with SPF 30.",
     "inventoryQuantity": 18,
@@ -217,7 +218,7 @@ export const productsData = [
     }
   },
   {
-    "id:": "329169aa-50fb-11ee-be56-0242ac120002",
+    "id": "329169aa-50fb-11ee-be56-0242ac120002",
     "name": "EasyGrill BBQ",
     "description": "Portable gas BBQ grill for outdoor cooking.",
     "inventoryQuantity": 6,
@@ -229,7 +230,7 @@ export const productsData = [
     }
   },
   {
-    "id:": "32916ab8-50fb-11ee-be56-0242ac120002",
+    "id": "32916ab8-50fb-11ee-be56-0242ac120002",
     "name": "QuickSteam Iron",
     "description": "High-pressure steam iron with auto shut-off.",
     "inventoryQuantity": 20,
@@ -241,7 +242,7 @@ export const productsData = [
     }
   },
   {
-    "id:": "32916bd0-50fb-11ee-be56-0242ac120002",
+    "id": "32916bd0-50fb-11ee-be56-0242ac120002",
     "name": "PetCare Shampoo",
     "description": "Hypoallergenic shampoo for dogs and cats.",
     "inventoryQuantity": 24,
@@ -253,7 +254,7 @@ export const productsData = [
     }
   },
   {
-    "id:": "32916cca-50fb-11ee-be56-0242ac120002",
+    "id": "32916cca-50fb-11ee-be56-0242ac120002",
     "name": "EasySlice Knife",
     "description": "Stainless steel kitchen knife set.",
     "inventoryQuantity": 32,
@@ -265,7 +266,7 @@ export const productsData = [
     }
   },
   {
-    "id:": "32916f7c-50fb-11ee-be56-0242ac120002",
+    "id": "32916f7c-50fb-11ee-be56-0242ac120002",
     "name": "SolarLight Outdoor",
     "description": "Solar-powered outdoor lighting set.",
     "inventoryQuantity": 9,
@@ -277,7 +278,7 @@ export const productsData = [
     }
   },
   {
-    "id:": "32917080-50fb-11ee-be56-0242ac120002",
+    "id": "32917080-50fb-11ee-be56-0242ac120002",
     "name": "MiniFridge Pro",
     "description": "Compact refrigerator with freezer compartment.",
     "inventoryQuantity": 15,
@@ -289,7 +290,7 @@ export const productsData = [
     }
   },
   {
-    "id:": "3291718e-50fb-11ee-be56-0242ac120002",
+    "id": "3291718e-50fb-11ee-be56-0242ac120002",
     "name": "FreshMint Toothpaste",
     "description": "Fluoride-free natural toothpaste.",
     "inventoryQuantity": 42,
@@ -301,7 +302,7 @@ export const productsData = [
     }
   },
   {
-    "id:": "32917292-50fb-11ee-be56-0242ac120002",
+    "id": "32917292-50fb-11ee-be56-0242ac120002",
     "name": "AutoClean Vacuum",
     "description": "Self-navigating robot vacuum cleaner.",
     "inventoryQuantity": 7,
@@ -313,7 +314,7 @@ export const productsData = [
     }
   },
   {
-    "id:": "32917396-50fb-11ee-be56-0242ac120002",
+    "id": "32917396-50fb-11ee-be56-0242ac120002",
     "name": "MegaSound Speaker",
     "description": "Bluetooth speaker with exceptional bass.",
     "inventoryQuantity": 27,
@@ -325,7 +326,7 @@ export const productsData = [
     }
   },
   {
-    "id:": "32917490-50fb-11ee-be56-0242ac120002",
+    "id": "32917490-50fb-11ee-be56-0242ac120002",
     "name": "PureAir Purifier",
     "description": "HEPA air purifier for indoor use.",
     "inventoryQuantity": 13,
@@ -337,7 +338,7 @@ export const productsData = [
     }
   },
   {
-    "id:": "3291759e-50fb-11ee-be56-0242ac120002",
+    "id": "3291759e-50fb-11ee-be56-0242ac120002",
     "name": "ChargeHub Station",
     "description": "Multi-device charging station.",
     "inventoryQuantity": 10,
@@ -349,7 +350,7 @@ export const productsData = [
     }
   },
   {
-    "id:": "329178a0-50fb-11ee-be56-0242ac120002",
+    "id": "329178a0-50fb-11ee-be56-0242ac120002",
     "name": "FocusTea",
     "description": "Herbal tea blend for improved focus.",
     "inventoryQuantity": 50,
@@ -361,7 +362,7 @@ export const productsData = [
     }
   },
   {
-    "id:": "329179b8-50fb-11ee-be56-0242ac120002",
+    "id": "329179b8-50fb-11ee-be56-0242ac120002",
     "name": "EasyClean Mop",
     "description": "Microfiber mop with a reusable pad.",
     "inventoryQuantity": 19,
@@ -373,7 +374,7 @@ export const productsData = [
     }
   },
   {
-    "id:": "32917abc-50fb-11ee-be56-0242ac120002",
+    "id": "32917abc-50fb-11ee-be56-0242ac120002",
     "name": "FitBand Pro",
     "description": "Fitness tracker with heart rate monitor.",
     "inventoryQuantity": 8,
@@ -385,7 +386,7 @@ export const productsData = [
     }
   },
   {
-    "id:": "32917bca-50fb-11ee-be56-0242ac120002",
+    "id": "32917bca-50fb-11ee-be56-0242ac120002",
     "name": "GourmetCoffee",
     "description": "Freshly roasted coffee beans.",
     "inventoryQuantity": 32,
@@ -397,7 +398,7 @@ export const productsData = [
     }
   },
   {
-    "id:": "32917cd8-50fb-11ee-be56-0242ac120002",
+    "id": "32917cd8-50fb-11ee-be56-0242ac120002",
     "name": "Speedy Blender",
     "description": "High-speed blender for smoothies and more.",
     "inventoryQuantity": 22,
@@ -409,7 +410,7 @@ export const productsData = [
     }
   },
   {
-    "id:": "32917e36-50fb-11ee-be56-0242ac120002",
+    "id": "32917e36-50fb-11ee-be56-0242ac120002",
     "name": "PowerDrill X",
     "description": "Cordless drill with multiple speed settings.",
     "inventoryQuantity": 17,
@@ -421,7 +422,7 @@ export const productsData = [
     }
   },
   {
-    "id:": "32917f58-50fb-11ee-be56-0242ac120002",
+    "id": "32917f58-50fb-11ee-be56-0242ac120002",
     "name": "NaturalSoap",
     "description": "Handmade soap with essential oils.",
     "inventoryQuantity": 44,
