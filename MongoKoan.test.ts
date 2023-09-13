@@ -72,62 +72,62 @@ describe('MongoKoan', () => {
   });
 
   test('test getWithProjection', async () => {
-    const response = await mongoKoan.getWithProjection("W",["id","name"]) as Array<ProductWithId>;
-    expect(response).toMatchObject({});
+    const response = await mongoKoan.getWithProjection("W",["name", "status"]) as Array<ProductWithId>;
+    expect(response[0]).toMatchObject({"name": "YogaMat Plus", status: "draft"});
   });
 
   test('test elemMatch', async () => {
     const id: string = "";
     const response = await mongoKoan.elemMatch(id);
-    expect(response).toMatchObject({});
+    expect(response).toMatchObject("foo");
   });
 
   test('test inMatch', async () => {
     const id: string = "";
     const response = await mongoKoan.inMatch(id);
-    expect(response).toMatchObject({});
+    expect(response).toMatchObject("foo");
   });
 
   test('test aggregateSortAdd', async () => {
     const id: string = "";
     const response = await mongoKoan.aggregateSortAdd();
-    expect(response).toMatchObject({});
+    expect(response).toMatchObject("foo");
   });
 
   test('test aggregateGroupCount', async () => {
     const id: string = "";
     const response = await mongoKoan.aggregateGroupCount();
-    expect(response).toMatchObject({});
+    expect(response).toMatchObject("foo");
   });
 
   test('test createIndex', async () => {
     const id: string = "";
     const response = await mongoKoan.createIndex();
-    expect(response).toMatchObject({});
+    expect(response).toMatchObject("foo");
   });
 
   test('test listIndexs', async () => {
     const id: string = "";
     const response = await mongoKoan.listIndexs();
-    expect(response).toMatchObject({});
+    expect(response).toMatchObject("foo");
   });
 
   test('test dropIndex', async () => {
     const id: string = "";
     const response = await mongoKoan.dropIndex();
-    expect(response).toMatchObject({});
+    expect(response).toMatchObject("foo");
   });
 
   test('test nonUniqueAddOne', async () => {
     const id: string = "";
     const response = await mongoKoan.nonUniqueAddOne();
-    expect(response).toMatchObject({});
+    expect(response).toMatchObject("foo");
   });
 
   test('test cursorIterate', async () => {
     const id: string = "";
     const response = await mongoKoan.cursorIterate();
-    expect(response).toMatchObject({});
+    expect(response).toMatchObject("foo");
   });
 
   afterAll(async () => {
