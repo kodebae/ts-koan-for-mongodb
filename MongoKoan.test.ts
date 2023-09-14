@@ -136,9 +136,8 @@ describe('MongoKoan', () => {
     expect(response).toMatchObject({"foo":"bar"});
   });
 
-  test('test listIndexs', async () => {
-    const id: string = "";
-    const response = await mongoKoan.listIndexs();
+  test('test indexes', async () => {
+    const response = await mongoKoan.createIndex();
     expect(response).toMatchObject({"foo":"bar"});
   });
 
