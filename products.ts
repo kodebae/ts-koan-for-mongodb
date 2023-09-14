@@ -9,7 +9,14 @@ export const productsData = [
       "at": "2023-09-08T14:15:22Z",
       "from": "192.168.1.1",
       "by": "550e8400-e29b-41d4-a716-446655440000"
-    }
+    },
+    "transactions": [
+      {date: "2023-01-01T00:00:00Z", description: "Opening Balance", debit: 0,     credit: 1000},
+      {date: "2023-02-01T00:00:00Z", description: "string", debit: 25023, credit: 0},
+      {date: "2023-03-01T00:00:00Z", description: "string", debit: 1995,  credit: 0},
+      {date: "2023-04-01T00:00:00Z", description: "string", debit: 1234,  credit: 0},
+      {date: "2023-05-01T00:00:00Z", description: "string", debit: 4500,  credit: 0},
+    ],
   },
   {
     "id": "329150d2-50fb-11ee-be56-0242ac120002",
@@ -22,6 +29,13 @@ export const productsData = [
       "from": "192.168.1.2",
       "by": "c9d0e2f8-b1c3-415c-a1e7-d6281e26c3a2"
     },
+    "transactions": [
+      {date: "2023-01-01T00:00:00Z", description: "Opening Balance", debit: 0,     credit: 1000},
+      {date: "2023-02-01T00:00:00Z", description: "string", debit: 25023, credit: 0},
+      {date: "2023-03-01T00:00:00Z", description: "string", debit: 1995,  credit: 0},
+      {date: "2023-04-01T00:00:00Z", description: "string", debit: 1234,  credit: 0},
+      {date: "2023-05-01T00:00:00Z", description: "string", debit: 4500,  credit: 0},
+    ],
   },
   {
     "id": "3291521c-50fb-11ee-be56-0242ac120002",
@@ -35,6 +49,13 @@ export const productsData = [
       "from": "192.168.1.3",
       "by": "fe862a7e-cf80-4f2d-8d25-0d5e6c1d0f33"
     },
+    "transactions": [
+      {date: "2023-01-01T00:00:00Z", description: "Opening Balance", debit: 0,     credit: 1000},
+      {date: "2023-02-01T00:00:00Z", description: "string", debit: 25023, credit: 0},
+      {date: "2023-03-01T00:00:00Z", description: "string", debit: 1995,  credit: 0},
+      {date: "2023-04-01T00:00:00Z", description: "string", debit: 1234,  credit: 0},
+      {date: "2023-05-01T00:00:00Z", description: "string", debit: 4500,  credit: 0},
+    ],
   },
   {
     "id": "3291533e-50fb-11ee-be56-0242ac120002",
@@ -47,7 +68,14 @@ export const productsData = [
       "at": "2023-09-08T16:12:40Z",
       "from": "192.168.1.4",
       "by": "321d9ad9-9e22-4d45-b4b6-23107b45c4a2"
-    }
+    },
+    "transactions": [
+      {date: "2023-01-01T00:00:00Z", description: "Opening Balance", debit: 0,     credit: 100000},
+      {date: "2023-02-01T00:00:00Z", description: "string", debit: 25023, credit: 0},
+      {date: "2023-03-01T00:00:00Z", description: "string", debit: 1995,  credit: 0},
+      {date: "2023-04-01T00:00:00Z", description: "string", debit: 1234,  credit: 0},
+      {date: "2023-05-01T00:00:00Z", description: "string", debit: 4500,  credit: 0},
+    ],
   },
   {
     "id": "32915442-50fb-11ee-be56-0242ac120002",
@@ -59,7 +87,14 @@ export const productsData = [
       "at": "2023-09-08T11:00:11Z",
       "from": "192.168.1.5",
       "by": "0efc8672-a3d0-4d59-9762-c4c290edd8e4"
-    }
+    },
+    "transactions": [
+      {date: "2023-01-01T00:00:00Z", description: "Opening Balance", debit: 0,     credit: 100000},
+      {date: "2023-02-01T00:00:00Z", description: "string", debit: 25023, credit: 0},
+      {date: "2023-03-01T00:00:00Z", description: "string", debit: 1995,  credit: 0},
+      {date: "2023-04-01T00:00:00Z", description: "string", debit: 1234,  credit: 0},
+      {date: "2023-05-01T00:00:00Z", description: "string", debit: 4500,  credit: 0},
+    ],
   },
   {
     "id": "32915582-50fb-11ee-be56-0242ac120002",
@@ -71,7 +106,14 @@ export const productsData = [
       "at": "2023-09-08T13:21:05Z",
       "from": "192.168.1.6",
       "by": "d1c13c55-0c58-4c3d-9ddb-9c7c2a8c9abc"
-    }
+    },
+    "transactions": [
+      {date: "2023-01-01T00:00:00Z", description: "Opening Balance", debit: 0,     credit: 1000},
+      {date: "2023-02-01T00:00:00Z", description: "string", debit: 25023, credit: 0},
+      {date: "2023-03-01T00:00:00Z", description: "string", debit: 1995,  credit: 0},
+      {date: "2023-04-01T00:00:00Z", description: "string", debit: 1234,  credit: 0},
+      {date: "2023-05-01T00:00:00Z", description: "string", debit: 4500,  credit: 0},
+    ],
   },
   {
     "id": "3291569a-50fb-11ee-be56-0242ac120002",
@@ -83,7 +125,14 @@ export const productsData = [
       "at": "2023-09-08T18:12:40Z",
       "from": "192.168.1.10",
       "by": "a5b9ed09-4ef8-4c42-967b-e9b9c3459c01"
-    }
+    },
+    "transactions": [
+      {date: "2023-01-01T00:00:00Z", description: "Opening Balance", debit: 0,     credit: 100000},
+      {date: "2023-02-01T00:00:00Z", description: "string", debit: 25023, credit: 0},
+      {date: "2023-03-01T00:00:00Z", description: "string", debit: 1995,  credit: 0},
+      {date: "2023-04-01T00:00:00Z", description: "string", debit: 1234,  credit: 0},
+      {date: "2023-05-01T00:00:00Z", description: "string", debit: 4500,  credit: 0},
+    ],
   },
   {
     "id": "329157b2-50fb-11ee-be56-0242ac120002",
@@ -95,7 +144,14 @@ export const productsData = [
       "at": "2023-09-08T15:32:20Z",
       "from": "192.168.1.11",
       "by": "0ccad12e-eda3-4100-b1b0-4d6e4c3d3dde"
-    }
+    },
+    "transactions": [
+      {date: "2023-01-01T00:00:00Z", description: "Opening Balance", debit: 0,     credit: 100000},
+      {date: "2023-02-01T00:00:00Z", description: "string", debit: 25023, credit: 0},
+      {date: "2023-03-01T00:00:00Z", description: "string", debit: 1995,  credit: 0},
+      {date: "2023-04-01T00:00:00Z", description: "string", debit: 1234,  credit: 0},
+      {date: "2023-05-01T00:00:00Z", description: "string", debit: 4500,  credit: 0},
+    ],
   },
   {
     "id": "32915c30-50fb-11ee-be56-0242ac120002",

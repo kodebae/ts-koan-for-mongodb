@@ -150,9 +150,8 @@ export class MongoKoan {
     try {
       const selector: { [key: string]: any } = {name: {$gte:minimumName}};
       const projection: { [key: string]: any } = {_id:0};
-      fields.forEach((field) => {
-        projection[field] = 1;
-      });
+      fields.forEach((field) => {projection[field] = 1;});
+
       return await this.collection.find(selector).project(projection).toArray() as Array<ProductWithId>;
       // throw("To Be Implemented")
     } catch (error) {
@@ -160,22 +159,30 @@ export class MongoKoan {
     }
   }
 
-  public async elemMatch(id: string): Promise<UpdateResult<ProductWithId> | {error: any}> {
+  public async elemMatch(description: string, minimumCredit: IntegerType): Promise<Array<ProductWithId> | {error: any}> {
     try {
-      const filter: { [key: string]: any } = {"id":id};
-      const update: { [key: string]: any } = {$set:{"tags":"foo"}};
-      return await this.collection.updateOne(filter, update) as UpdateResult<ProductWithId>;
+      const filter = {
+        transactions: {
+          $elemMatch: {
+            "description": description,
+            "credit": {$gt: minimumCredit}
+          }
+        }
+      };
+      return await this.collection.find(filter).toArray() as Array<ProductWithId>;
       // throw("To Be Implemented")
     } catch (error) {
       return {"error":error};
     }
   }
 
-  public async inMatch(id: string): Promise<UpdateResult<ProductWithId> | {error: any}> {
+  public async inMatch(statsOptions: Array<string>): Promise<Array<ProductWithId> | {error: any}> {
     try {
-      const filter = {"id":id};
-      const update = {$set:{"tags":"foo"}};
-      return await this.collection.updateOne(filter, update) as UpdateResult<ProductWithId>;
+      const filter = {status: {$in: statsOptions}};
+      return await this.collection.find(filter).sort({"name":1}).toArray() as Array<ProductWithId>;
+      // const cursor = this.collection.find(filter);
+      // throw(cursor);
+      // return cursor.toArray() as Array<ProductWithId>;
       // throw("To Be Implemented")
     } catch (error) {
       return {"error":error};

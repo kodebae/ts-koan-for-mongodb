@@ -24,7 +24,7 @@ describe('MongoKoan', () => {
     const response = await mongoKoan.getAll() as Array<ProductWithId>;
     expect(response.length).toBe(36);
   });
-
+  
   test('test addOne', async () => {
     const product: Product = {
       "id": "myNewProduct",
@@ -38,7 +38,6 @@ describe('MongoKoan', () => {
     const newProduct = await mongoKoan.getOne(product.id) as ProductWithId;
     expect(newProduct).toMatchObject(product);
     expect(newProduct._id).toEqual(insertResult.insertedId);
-
   });
 
   test('test setInStock', async () => {
@@ -60,7 +59,7 @@ describe('MongoKoan', () => {
   });
 
   test('test push tags', async () => {
-    const id = "3291533e-50fb-11ee-be56-0242ac120002";
+    const id: string = "3291533e-50fb-11ee-be56-0242ac120002";
     const response = await mongoKoan.pushTags(id, ["Yellow","Green"]);
     expect(response).toMatchObject({tags:["Red", "Blue", "Yellow", "Green"]});
   });
@@ -77,15 +76,28 @@ describe('MongoKoan', () => {
   });
 
   test('test elemMatch', async () => {
-    const id: string = "";
-    const response = await mongoKoan.elemMatch(id);
-    expect(response).toMatchObject("foo");
+    const id: string = "32915582-50fb-11ee-be56-0242ac120002";
+    const response = await mongoKoan.elemMatch("Opening Balance", 10000) as Array<ProductWithId>;
+    expect(response).toBeInstanceOf(Array<ProductWithId>);
+    response.forEach(product => {
+      if (product.transactions) {
+        product.transactions.forEach(trasaction => {
+          if (trasaction.description === "Opening Balance") {
+            expect(trasaction.credit).toBeGreaterThan(10000);
+          };
+        });
+      }
+    });
   });
 
   test('test inMatch', async () => {
     const id: string = "";
-    const response = await mongoKoan.inMatch(id);
-    expect(response).toMatchObject("foo");
+    const response = await mongoKoan.inMatch(["draft","active"]) as Array<ProductWithId>;
+    expect(response).toBeInstanceOf(Array<ProductWithId>);
+    response.forEach(product => {
+      expect(["active", "draft"].includes(product.status)).toBeTruthy();
+    })
+    
   });
 
   test('test aggregateSortAdd', async () => {
