@@ -225,51 +225,59 @@ export class MongoKoan {
     }
   
   
-  public async createIndex() {
+  public async createUniqueNameIndex(): Promise<string | {error: any}> {
     try {
-      // return await this.collection.deleteMany({});
-      throw("To Be Implemented")
+      return await this.collection.createIndex( {name:1},{unique:true} );
     } catch (error) {
       return {"error":error};
     }
   }
 
-  public async listIndexs() {
+  public async listIndexs(): Promise<Array<IndexInformationOptions> | {error: any}> {
     try {
-      // return await this.collection.deleteMany({});
-      throw("To Be Implemented")
+      return await this.collection.indexes({full:true});
+      // throw("To Be Implemented")
     } catch (error) {
       return {"error":error};
     }
   }
 
-  public async dropIndex() {
+  public async dropIndex(name: string): Promise<any> {
     try {
-      // return await this.collection.deleteMany({});
-      throw("To Be Implemented")
+      return await this.collection.dropIndex(name);
+      // throw("To Be Implemented")
     } catch (error) {
       return {"error":error};
     }
   }
 
-  public async cursorIterate() {
+  public async dropAllIndexs() {
     try {
-      // return await this.collection.deleteMany({});
-      throw("To Be Implemented")
+      const indexes = await(this.listIndexs()) as Array<any>;
+      indexes.forEach(index => {
+        if (index.name != "_id_") {
+          this.dropIndex(index.name);
+        }
+      });
+      // throw("To Be Implemented")
     } catch (error) {
       return {"error":error};
     }
   }
-  
-  public async nonUniqueAddOne() {
+
+  public async cursorIterate(): Promise<IntegerType | {error: any}> {
     try {
-      // return await this.collection.deleteMany({});
-      throw("To Be Implemented")
+      // Get Cursor
+
+      // Iterage Cursor, accumulate inventoryQuantity
+      const quantity: IntegerType = 0;
+      return quantity;
+      // throw("To Be Implemented")
     } catch (error) {
       return {"error":error};
     }
   }
-  
+    
   public async deleteAll() {
     try {
       return await this.collection.deleteMany({});

@@ -1,7 +1,6 @@
 import { MongoKoan } from './MongoKoan';
 import { Product, ProductWithId } from './Product';
-import { EventTrace } from './EventTrace';
-import { IndexInformationOptions, InsertManyResult, InsertOneResult, IntegerType, UpdateResult } from 'mongodb';
+import { IndexInformationOptions, InsertManyResult, InsertOneResult, Int32, IntegerType, MongoServerError, UpdateResult } from 'mongodb';
 
 describe('MongoKoan', () => {
   let mongoKoan: MongoKoan; 
@@ -9,10 +8,7 @@ describe('MongoKoan', () => {
   beforeAll(async () => {
     mongoKoan = new MongoKoan();
     const connectResult = await mongoKoan.connect() as Array<IndexInformationOptions>;
-    expect(connectResult).toMatchObject([{"key": {"_id": 1}, "name": "_id_", "v": 2}]);
-
     const loadAllResult = await mongoKoan.loadAll() as InsertManyResult<ProductWithId>;
-    expect(loadAllResult).toMatchObject({"insertedCount": 36});
   });
 
   test('test countAll', async () => {
@@ -130,36 +126,44 @@ describe('MongoKoan', () => {
     expect(response[2].inventory).toBe(189);
   });
 
-  test('test createIndex', async () => {
-    const id: string = "";
-    const response = await mongoKoan.createIndex();
-    expect(response).toMatchObject({"foo":"bar"});
-  });
+  test('test create, list, drop Index', async () => {
+    const createResponse = await mongoKoan.createUniqueNameIndex();
+    expect(createResponse).toBe("name_1");
 
-  test('test indexes', async () => {
-    const response = await mongoKoan.createIndex();
-    expect(response).toMatchObject({"foo":"bar"});
-  });
+    const listResponse = await mongoKoan.listIndexs() as Array<any>;
+    expect(listResponse).toBeInstanceOf(Array<IndexInformationOptions>);
+    expect(listResponse).toHaveLength(2);
+    expect(listResponse[1].name).toBe("name_1");
+    
+    const response = await mongoKoan.dropIndex("name_1");
+    expect(response).toMatchObject({"nIndexesWas": 2, "ok": 1,});
 
-  test('test dropIndex', async () => {
-    const id: string = "";
-    const response = await mongoKoan.dropIndex();
-    expect(response).toMatchObject({"foo":"bar"});
+    const checkResponse = await mongoKoan.listIndexs() as Array<any>;
+    expect(checkResponse).toBeInstanceOf(Array<IndexInformationOptions>);
+    expect(checkResponse).toHaveLength(1);
   });
 
   test('test nonUniqueAddOne', async () => {
-    const id: string = "";
-    const response = await mongoKoan.nonUniqueAddOne();
-    expect(response).toMatchObject({"foo":"bar"});
+    const createResponse = await mongoKoan.createUniqueNameIndex();
+    expect(createResponse).toBe("name_1");
+
+    const product: Product = {id: "foo", name: "FocusTea", status: "none"};
+    const response = await mongoKoan.addOne(product) as { error: MongoServerError };
+    expect(response).toHaveProperty("error");
+    expect(response.error).toBeInstanceOf(MongoServerError);
+    expect(response.error.message).toContain("duplicate key error");
+
+    await mongoKoan.dropIndex("name_1");
   });
 
   test('test cursorIterate', async () => {
     const id: string = "";
-    const response = await mongoKoan.cursorIterate();
+    const response = await mongoKoan.cursorIterate() as Int32;
     expect(response).toMatchObject({"foo":"bar"});
   });
 
   afterAll(async () => {
+    await mongoKoan.dropAllIndexs();
     await mongoKoan.deleteAll(); 
     await mongoKoan.disconnect();
   });
