@@ -14,7 +14,7 @@ describe('MongoKoan', () => {
   test('test countAll', async () => {
     const response = await mongoKoan.countAll(); 
     expect(response).toEqual(36);
-  }); 
+  });
 
   test('get all documents', async () => {
     const response = await mongoKoan.getAll() as Array<ProductWithId>;
@@ -26,7 +26,7 @@ describe('MongoKoan', () => {
       "id": "myNewProduct",
       "name": "This is a test product",
       "status": "draft",
-    }; 
+    };
 
     const insertResult = await mongoKoan.addOne(product) as InsertOneResult<ProductWithId>;
     expect(insertResult).toHaveProperty("insertedId");
