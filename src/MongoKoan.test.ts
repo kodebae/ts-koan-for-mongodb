@@ -1,6 +1,6 @@
 import { MongoKoan } from './MongoKoan';
-import { Product, ProductWithId } from './Product';
-import { IndexInformationOptions, InsertManyResult, InsertOneResult, Int32, IntegerType, MongoServerError, UpdateResult } from 'mongodb';
+import { Product, ProductWithId } from './models/Product';
+import { IndexInformationOptions, InsertManyResult, InsertOneResult, MongoServerError } from 'mongodb';
 
 describe('MongoKoan', () => {
   let mongoKoan: MongoKoan; 
@@ -112,8 +112,8 @@ describe('MongoKoan', () => {
 
   test('test aggregateGroupCount', async () => {
     const id: string = "";
-    const response = await mongoKoan.aggregateGroupCount() as Array<{"_id": string, count: IntegerType, inventory: IntegerType}>;
-    expect(response).toBeInstanceOf(Array<{"_id": string, count: IntegerType, inventory: IntegerType}>);
+    const response = await mongoKoan.aggregateGroupCount() as Array<{"_id": string, count: number, inventory: number}>;
+    expect(response).toBeInstanceOf(Array<{"_id": string, count: number, inventory: number}>);
     expect(response).toHaveLength(3);
     expect(response[0]._id).toBe("active");
     expect(response[0].count).toBe(17);
@@ -158,8 +158,8 @@ describe('MongoKoan', () => {
 
   test('test cursorIterate', async () => {
     const id: string = "";
-    const response = await mongoKoan.cursorIterate() as Int32;
-    expect(response).toMatchObject({"foo":"bar"});
+    const response = await mongoKoan.cursorIterate("deleted") as number;
+    expect(response).toBe(754);
   });
 
   afterAll(async () => {

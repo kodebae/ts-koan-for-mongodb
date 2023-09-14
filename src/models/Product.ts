@@ -10,10 +10,10 @@ export interface Product extends Document {
     id: string,
     name: string,
     description?: string,
-    inventoryQuantity?: IntegerType,
+    inventoryQuantity?: number,
     status: string,
     lastUpdated?: EventTrace,
-    instock?: IntegerType,
+    instock?: number,
     many?: string
     tags?: Array<String>,
     transactions?: Array<FinancialTransaction>;

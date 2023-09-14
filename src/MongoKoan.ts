@@ -1,6 +1,6 @@
 import { productsData } from "./products";
-import { Product, ProductWithId } from "./Product";
-import { MongoClient, Db, Collection, FindOneAndUpdateOptions, UpdateFilter, InsertManyResult, IntegerType, IndexInformationOptions, DeleteResult, InsertOneResult, UpdateResult, ModifyResult, ReturnDocument } from "mongodb";
+import { Product, ProductWithId } from "./models/Product";
+import { MongoClient, Db, Collection, InsertManyResult, IndexInformationOptions, DeleteResult, InsertOneResult, ReturnDocument } from "mongodb";
 
 export class MongoKoan {
   private dbName: string = "StageZero";
@@ -73,7 +73,7 @@ export class MongoKoan {
     }
   }
 
-  public async setInStock(id: string, quantity: IntegerType): Promise<ProductWithId | {error: any}> {
+  public async setInStock(id: string, quantity: number): Promise<ProductWithId | {error: any}> {
     try {
       const filter = { "id": id };
       const update = { $set: {"instock":quantity} };
@@ -85,7 +85,7 @@ export class MongoKoan {
     } 
   }
 
-  public async decrementInventoryQuantity(id: string, quantity: IntegerType): Promise<ProductWithId | {error: any}> {
+  public async decrementInventoryQuantity(id: string, quantity: number): Promise<ProductWithId | {error: any}> {
     try {
       const selector = { "id": id };
       const updater = {$inc:{inventoryQuantity:-quantity}};
@@ -159,7 +159,7 @@ export class MongoKoan {
     }
   }
 
-  public async elemMatch(description: string, minimumCredit: IntegerType): Promise<Array<ProductWithId> | {error: any}> {
+  public async elemMatch(description: string, minimumCredit: number): Promise<Array<ProductWithId> | {error: any}> {
     try {
       const filter = {
         transactions: {
@@ -205,7 +205,7 @@ export class MongoKoan {
     }
   }
 
-  public async aggregateGroupCount(): Promise<Array<{"_id": string, count: IntegerType, inventory: IntegerType}> | {error: any}> {
+  public async aggregateGroupCount(): Promise<Array<{"_id": string, count: number, inventory: number}> | {error: any}> {
       try {
         const groupby = {_id:"$status", count: {$count:{}}, inventory:{$sum:"$inventoryQuantity"}};
         const projection = {"count":1,"inventory":1};
@@ -216,7 +216,7 @@ export class MongoKoan {
           {$project: projection},
         ];
         const cursor = this.collection.aggregate(pipeline);
-        const reply = await cursor.toArray() as Array<{"_id": string, count: IntegerType, inventory: IntegerType}>;
+        const reply = await cursor.toArray() as Array<{"_id": string, count: number, inventory: number}>;
         return reply;
         // throw("To Be Implemented")
       } catch (error) {
@@ -265,12 +265,17 @@ export class MongoKoan {
     }
   }
 
-  public async cursorIterate(): Promise<IntegerType | {error: any}> {
+  public async cursorIterate(status: string): Promise<number | {error: any}> {
     try {
       // Get Cursor
-
-      // Iterage Cursor, accumulate inventoryQuantity
-      const quantity: IntegerType = 0;
+      var quantity: number = 0;
+      const cursor = this.collection.find({});
+      while (await cursor.hasNext()) {
+        const product = await cursor.next() as ProductWithId;
+        if (product.inventoryQuantity) {
+          quantity += product.inventoryQuantity;
+        }
+      }
       return quantity;
       // throw("To Be Implemented")
     } catch (error) {
