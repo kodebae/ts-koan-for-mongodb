@@ -180,33 +180,51 @@ export class MongoKoan {
     try {
       const filter = {status: {$in: statsOptions}};
       return await this.collection.find(filter).sort({"name":1}).toArray() as Array<ProductWithId>;
-      // const cursor = this.collection.find(filter);
-      // throw(cursor);
-      // return cursor.toArray() as Array<ProductWithId>;
       // throw("To Be Implemented")
     } catch (error) {
       return {"error":error};
     }
   }
 
-  public async aggregateSortAdd() {
+  public async aggregateSortAdd(addTextValue: string, status: string): Promise<Array<{name: string, status: string, added: string}> | {error: any}> {
     try {
-      // return await this.collection.deleteMany({});
-      throw("To Be Implemented")
+      const selector = {status: status};
+      const sort = {name: -1};
+      const addField = {added: addTextValue};
+      const projection = {"_id":0,"name":1,"added":1,"status":1};
+      const pipeline = [
+        {$match: selector },
+        {$sort: sort },
+        {$set: addField },
+        {$project: projection},
+      ];
+      return await this.collection.aggregate(pipeline).toArray() as Array<{name: string, status: string, added: string}>;
+      // throw("To Be Implemented")
     } catch (error) {
       return {"error":error};
     }
   }
 
-  public async aggregateGroupCount() {
-    try {
-      // return await this.collection.deleteMany({});
-      throw("To Be Implemented")
-    } catch (error) {
-      return {"error":error};
+  public async aggregateGroupCount(): Promise<Array<{"_id": string, count: IntegerType, inventory: IntegerType}> | {error: any}> {
+      try {
+        const groupby = {_id:"$status", count: {$count:{}}, inventory:{$sum:"$inventoryQuantity"}};
+        const projection = {"count":1,"inventory":1};
+        const sort = {_id: 1};
+        const pipeline = [
+          {$group: groupby },
+          {$sort: sort},
+          {$project: projection},
+        ];
+        const cursor = this.collection.aggregate(pipeline);
+        const reply = await cursor.toArray() as Array<{"_id": string, count: IntegerType, inventory: IntegerType}>;
+        return reply;
+        // throw("To Be Implemented")
+      } catch (error) {
+        return {"error":error};
+      }
     }
-  }
-
+  
+  
   public async createIndex() {
     try {
       // return await this.collection.deleteMany({});

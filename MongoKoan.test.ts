@@ -1,7 +1,7 @@
 import { MongoKoan } from './MongoKoan';
 import { Product, ProductWithId } from './Product';
 import { EventTrace } from './EventTrace';
-import { IndexInformationOptions, InsertManyResult, InsertOneResult, UpdateResult } from 'mongodb';
+import { IndexInformationOptions, InsertManyResult, InsertOneResult, IntegerType, UpdateResult } from 'mongodb';
 
 describe('MongoKoan', () => {
   let mongoKoan: MongoKoan; 
@@ -102,44 +102,62 @@ describe('MongoKoan', () => {
 
   test('test aggregateSortAdd', async () => {
     const id: string = "";
-    const response = await mongoKoan.aggregateSortAdd();
-    expect(response).toMatchObject("foo");
+    const response = await mongoKoan.aggregateSortAdd("NewValue","draft") as Array<{name: string, status: string, added: string}>;
+    expect(response).toBeInstanceOf(Array<{name: string, status: string, added: string}>);
+    response.forEach(product => {
+      expect(product).toHaveProperty("name");
+      expect(product).toHaveProperty("status");
+      expect(product.status).toBe("draft");
+      expect(product).toHaveProperty("added");
+      expect(product.added).toBe("NewValue");
+    });
+
   });
 
   test('test aggregateGroupCount', async () => {
     const id: string = "";
-    const response = await mongoKoan.aggregateGroupCount();
-    expect(response).toMatchObject("foo");
+    const response = await mongoKoan.aggregateGroupCount() as Array<{"_id": string, count: IntegerType, inventory: IntegerType}>;
+    expect(response).toBeInstanceOf(Array<{"_id": string, count: IntegerType, inventory: IntegerType}>);
+    expect(response).toHaveLength(3);
+    expect(response[0]._id).toBe("active");
+    expect(response[0].count).toBe(17);
+    expect(response[0].inventory).toBe(381);
+    expect(response[1]._id).toBe("deleted");
+    expect(response[1].count).toBe(8);
+    expect(response[1].inventory).toBe(184);
+    expect(response[2]._id).toBe("draft");
+    expect(response[2].count).toBe(11);
+    expect(response[2].inventory).toBe(189);
   });
 
   test('test createIndex', async () => {
     const id: string = "";
     const response = await mongoKoan.createIndex();
-    expect(response).toMatchObject("foo");
+    expect(response).toMatchObject({"foo":"bar"});
   });
 
   test('test listIndexs', async () => {
     const id: string = "";
     const response = await mongoKoan.listIndexs();
-    expect(response).toMatchObject("foo");
+    expect(response).toMatchObject({"foo":"bar"});
   });
 
   test('test dropIndex', async () => {
     const id: string = "";
     const response = await mongoKoan.dropIndex();
-    expect(response).toMatchObject("foo");
+    expect(response).toMatchObject({"foo":"bar"});
   });
 
   test('test nonUniqueAddOne', async () => {
     const id: string = "";
     const response = await mongoKoan.nonUniqueAddOne();
-    expect(response).toMatchObject("foo");
+    expect(response).toMatchObject({"foo":"bar"});
   });
 
   test('test cursorIterate', async () => {
     const id: string = "";
     const response = await mongoKoan.cursorIterate();
-    expect(response).toMatchObject("foo");
+    expect(response).toMatchObject({"foo":"bar"});
   });
 
   afterAll(async () => {
