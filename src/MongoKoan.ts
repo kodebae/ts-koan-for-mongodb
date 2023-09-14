@@ -185,8 +185,8 @@ export class MongoKoan {
 
   public async aggregateSortAdd(addTextValue: string, status: string): Promise<Array<{name: string, status: string, added: string}> | {error: any}> {
     // this method should use an Aggregation to
-    //  find all products with a status of ?
-    //  add a added attribute to the results, with a value provided in addTextValue
+    //  find all products with the status provided
+    //  add a "added" attribute to the results, with a value provided in addTextValue
     //  create a projection that includes only the name, status, and added attributes
     try {
       throw("To Be Implemented")
@@ -196,6 +196,10 @@ export class MongoKoan {
   }
 
   public async aggregateGroupCount(): Promise<Array<{"_id": string, count: number, inventory: number}> | {error: any}> {
+    // this method should use an aggretagion to 
+    //  find information about proucts in each status
+    //    the total number of products in the status, 
+    //    the sum of inventoryQuantity in the status
     try {
       throw("To Be Implemented")
     } catch (error) {
@@ -203,9 +207,10 @@ export class MongoKoan {
     }
   }
   
-  
   public async createUniqueNameIndex(): Promise<string | {error: any}> {
     try {
+      // this method should 
+      //  create an index that implements a unique constrant on the name
       throw("To Be Implemented")
     } catch (error) {
       return {"error":error};
@@ -213,6 +218,8 @@ export class MongoKoan {
   }
 
   public async listIndexs(): Promise<Array<IndexInformationOptions> | {error: any}> {
+    // this method should
+    //  return a list of the indexes in the collection
     try {
       throw("To Be Implemented")
     } catch (error) {
@@ -221,6 +228,8 @@ export class MongoKoan {
   }
 
   public async dropIndex(name: string): Promise<any> {
+    // this method should drop the identified index
+    //  and return the response with statistics
     try {
       throw("To Be Implemented")
     } catch (error) {
@@ -229,6 +238,9 @@ export class MongoKoan {
   }
 
   public async dropAllIndexs() {
+    // this method should
+    //  iterate over all the indexes in the colleciton
+    //  drop every index that is not named "_id_"
     try {
       throw("To Be Implemented")
     } catch (error) {
@@ -237,6 +249,9 @@ export class MongoKoan {
   }
 
   public async cursorIterate(status: string): Promise<number | {error: any}> {
+    // this method should iterate over a cursor
+    //  that finds all the products with the status provided
+    //  returns the sum of the inventoryQuantity values
     try {
       throw("To Be Implemented")
     } catch (error) {
@@ -245,6 +260,7 @@ export class MongoKoan {
   }
     
   public async deleteAll() {
+    // this method should delete all the documents in the Koan_products collection
     try {
       throw("To Be Implemented")
     } catch (error) {
@@ -253,6 +269,7 @@ export class MongoKoan {
   }
 
   public async disconnect(): Promise<void> {
+    // this method should discconect from the databse
     try {
       throw("To Be Implemented")
     } catch (error) {
