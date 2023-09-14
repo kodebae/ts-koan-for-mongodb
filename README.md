@@ -22,8 +22,11 @@ This koan makes use of a docker instance of MongoDB. You can start the MongoDB I
 ```bash
 docker compose up --detach
 ```
+- Check, the container is running
 
 Once those containers have started, you can access the Express instance [here](http://localhost:8081). There won't be much to see, after you run the tests at least once you should see a "StageZero" database with a koan_products collection, but that collection is emptied after each test run so there won't be data in it unless you time things just right.
+
+- You're such a trickster. Ok, I see the app and we need persistent data for it. 
 
 When you are done with your testing you can stop the containers with:
 
