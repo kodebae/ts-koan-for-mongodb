@@ -2,6 +2,8 @@ import { productsData } from "./products";
 import { Product, ProductWithId } from "./models/Product";
 import { MongoClient, Db, Collection, InsertManyResult, IndexInformationOptions, DeleteResult, InsertOneResult, ReturnDocument } from "mongodb";
 
+// To complete this koan you will need to write the methods below
+// I strongly suggest starting with the connect, deleteAll, and disconnect methods
 export class MongoKoan {
   private dbName: string = "StageZero";
   private collectionName: string = "Koan_products";
