@@ -36,6 +36,16 @@ describe('MongoKoan', () => {
     expect(newProduct._id).toEqual(insertResult.insertedId);
   });
 
+  test('test decrementInventoryQuantity', async () => {
+    const id = "32916090-50fb-11ee-be56-0242ac120002";
+    const decrement = await mongoKoan.decrementInventoryQuantity(id, 10) as ProductWithId;
+    expect(decrement).toHaveProperty("inventoryQuantity");
+    expect(decrement.inventoryQuantity).toBe(9);
+    const increment = await mongoKoan.decrementInventoryQuantity(id, -10) as ProductWithId;
+    expect(increment).toHaveProperty("inventoryQuantity");
+    expect(increment.inventoryQuantity).toBe(19);
+  });
+
   test('test setInStock', async () => {
     const id: string = "329149de-50fb-11ee-be56-0242ac120002";
     const response = await mongoKoan.setInStock(id,20);

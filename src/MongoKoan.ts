@@ -88,10 +88,10 @@ export class MongoKoan {
   public async decrementInventoryQuantity(id: string, quantity: number): Promise<ProductWithId | {error: any}> {
     try {
       const selector = { "id": id };
-      const updater = {$inc:{inventoryQuantity:-quantity}};
+      const updater = {$inc:{inventoryQuantity: -quantity}};
       const option = { returnDocument: ReturnDocument.AFTER };
 
-      return await this.collection.findOneAndUpdate(selector,updater, option) as ProductWithId;
+      return await this.collection.findOneAndUpdate(selector, updater, option) as ProductWithId;
       // throw("To Be Implemented")
     } catch (error) {
       return {"error":error};
