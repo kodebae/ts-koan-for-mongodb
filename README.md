@@ -33,7 +33,7 @@ When you are done with your testing you can stop the containers with:
 ```bash
 docker compose down
 ```
-- confirmed container is working
+- Confirmed container is working
 
 ## To install dependencies
 
